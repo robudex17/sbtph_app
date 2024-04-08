@@ -31,7 +31,6 @@ export default {
       TheHeader,
       TheNavigation,
       SwitchAgentModalForm,
-    //  PlayGround
     },
     data(){
       return {
@@ -78,7 +77,20 @@ export default {
       this.$store.dispatch('checkIfCurrentLogin')
     },
     mounted(){
-      
+      const scripts = [
+            "js/xlsx.core.min.js",
+            "js/jhxlsx.js",
+            "js/FileSaver.js"
+        ];
+        scripts.forEach(script => {
+            let tag = document.head.querySelector(`[src="${ script }"`);
+            if (!tag) {
+                tag = document.createElement("script");
+                tag.setAttribute("src", script);
+                tag.setAttribute("type", 'text/javascript');
+                document.head.appendChild(tag); 
+            }
+        });
     },
     watch:{
       getAutoLogoutStatus(currentstatus , oldstatus){

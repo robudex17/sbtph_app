@@ -67,6 +67,7 @@ export default {
             return this.formIsValid
         },
         submitFromData(){
+            console.log('test')
             if(!this.formValidation()){
                 return
             }

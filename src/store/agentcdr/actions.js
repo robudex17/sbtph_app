@@ -419,6 +419,38 @@ export default {
       }
     
       context.commit('mutCallsDetails',payload)
+    },
+
+    async insertCustomerInfo(context, payload){
+      
+      const response = await fetch(API.insertCustomerInfo, {
+          method: 'POST', 
+          body: JSON.stringify(payload.data)
+      })
+      if(!response.ok){
+          const error = new Error('Cannot Insert Customer Info')
+          throw error
+      }else{
+          // context.dispatch('fetchtUpdatedTagComment',payload)
+          console.log("New Customer Info Added")
+      }
+  },
+
+  async  updateCustomerInfo(context, payload){
+      
+    const response = await fetch(API.updateCustomerInfo, {
+        method: 'POST', 
+        body: JSON.stringify(payload.data)
+    })
+    if(!response.ok){
+        const error = new Error('Cannot Update Customer Info')
+        throw error
+    }else{
+        // context.dispatch('fetchtUpdatedTagComment',payload)
+        console.log("New Customer Info Updated")
     }
+},
+  
+ 
       
 }

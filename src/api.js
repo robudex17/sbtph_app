@@ -1,5 +1,5 @@
 
-const  HTTPADDR = 'http://103.5.6.2/sbtph_api/api'
+const  HTTPADDR = 'http://103.5.6.2/sbtph_api_prod/api'
 const API = {
     phoneLoggedIn: `${HTTPADDR}/active.php`,
     phoneLogggedOut: `${HTTPADDR}/inactive.php`,
@@ -80,7 +80,10 @@ const API = {
     createTag : `${HTTPADDR}/create_tag.php`,
     deleteTag: `${HTTPADDR}/delete_tag.php`,
 
-    generateMetrics: `${HTTPADDR}/get_metrics.php`
+    generateMetrics: `${HTTPADDR}/get_metrics.php`, 
+
+    insertCustomerInfo: `${HTTPADDR}/insert_customer_info.php`,
+    updateCustomerInfo: `${HTTPADDR}/update_customer_info.php` 
 
 }
 export default API

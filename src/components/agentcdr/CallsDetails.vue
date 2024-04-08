@@ -20,13 +20,13 @@
       
       <base-table v-if="activeRoutePath==='calldetails'" :theader="calltype" tableclass='cdr' :tags="callsDetailsTag" @emittedData="searchResult"  >
           
-          <calls-details-data-list activeRoutePath="calldetails" :tdata="callsDetails" :trimStart="trimStart" :tags="callsDetailsTag" :calltype="calltype" @emittedData="putCommentTag"></calls-details-data-list>
+          <calls-details-data-list activeRoutePath="calldetails" :tdata="callsDetails" :trimStart="trimStart" :tags="callsDetailsTag" :calltype="calltype" @emittedData="putCommentTag" @emittedCustomerData="setCustomerinfo"></calls-details-data-list>
            <!-- <calls-details-data-list :tdata="callsDetails[0]" :tags="callsDetails[1]" :calltype="calltype" @emittedData="putCommentTag"></calls-details-data-list> -->
         </base-table>
 
         <base-table v-else-if="activeRoutePath==='searchnumberIn'" theader="searchnumberIn" tableclass='cdr' :tags="callsDetailsTag">
           
-          <calls-details-data-list activeRoutePath="searchnumberIn" :tdata="callsDetails" :trimStart="trimStart" :tags="callsDetailsTag" :calltype="calltype" @emittedData="putCommentTag"></calls-details-data-list>
+          <calls-details-data-list activeRoutePath="searchnumberIn" :tdata="callsDetails" :trimStart="trimStart" :tags="callsDetailsTag" :calltype="calltype" @emittedData="putCommentTag"   @emittedCustomerData="setCustomerinfo"></calls-details-data-list>
            <!-- <calls-details-data-list :tdata="callsDetails[0]" :tags="callsDetails[1]" :calltype="calltype" @emittedData="putCommentTag"></calls-details-data-list> -->
         </base-table>
 
@@ -54,7 +54,7 @@ import CallsDetailsDataList from './data/CallsDetailsDataList.vue'
 import ThePagination from '../layout/ThePagination.vue'
 
 export default {
-  emits:['emittedData'],
+  emits:['emittedData','emittedCustomerData'],
   components: {
     CallsDetailsDataList,
     BaseContainer,
@@ -124,11 +124,28 @@ export default {
     },
     putCommentTag(data){
       let querystring = window.location.search.substring(1)
-      
+      console.log(data)
        
        this.$store.dispatch('agentcdr/putCommentTag',{querystring,data:data,calltype:this.calltype})
-       this.buildPage(this.currentPage)
+      //  this.buildPage(this.currentPage)
       
+    },
+    setCustomerinfo(data){
+        console.log("from calldetails")
+        console.log(data)
+        try {
+          if(data.customer_id_old_state == "" || data.customer_name_old_state == "") {
+            this.$store.dispatch('agentcdr/insertCustomerInfo',{data})
+            this.fetchCallDetials()
+          }else{
+            this.$store.dispatch('agentcdr/updateCustomerInfo',{data})
+            this.fetchCallDetials()
+          }
+          
+        }catch(e){
+          alert(e.message)
+        }
+       
     },
     getTotalPages(){
        //return  Math.ceil(this.callsDetails[0].length/this.numberPerPage)

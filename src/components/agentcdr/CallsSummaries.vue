@@ -65,7 +65,14 @@ export default {
             let dataToBeExported
               dataToBeExported = this.$store.getters['agentcdr/getSummariesExportData']
         //    console.log(dataToBeExported)  
-             window.Jhxlsx.export(dataToBeExported.tableData, dataToBeExported.options);
+            //  window.Jhxlsx.export(dataToBeExported.tableData, dataToBeExported.options);
+
+       if (window.Jhxlsx && window.Jhxlsx.export) {
+        console.log('Its loaded!!')
+        window.Jhxlsx.export(dataToBeExported.tableData, dataToBeExported.options);
+        } else {
+        console.error('Jhxlsx or its export method is not defined.');
+        }
         
         },
         handleError(){
