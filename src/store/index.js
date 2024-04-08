@@ -21,7 +21,7 @@ const store = createStore({
         return {
              AppAdmin: 'Rogmer Bulaclac',
              AppDeveloper: 'Rogmer Bulaclac',
-             AppName:'sbtph_app'
+             AppName:'sbtph_app_prod'
         }
     },
     getters:{
