@@ -1,5 +1,5 @@
 
-const  HTTPADDR = 'http://103.5.6.2/sbtph_api_prod/api'
+const  HTTPADDR = 'http://210.1.86.211/sbtph_api_prod/api'
 const API = {
     phoneLoggedIn: `${HTTPADDR}/active.php`,
     phoneLogggedOut: `${HTTPADDR}/inactive.php`,
@@ -52,6 +52,14 @@ const API = {
         collection: `${HTTPADDR}/collection/delete_collection_agent_api.php`,
         sales: `${HTTPADDR}/sales/delete_sales_agent_api.php`
     },
+
+     resignedAgent: {
+        csd: `${HTTPADDR}/resigned_csd.php`,
+        collection: `${HTTPADDR}/collection/resigned_collection_agent_api.php`,
+        sales: `${HTTPADDR}/sales/resigned_sales_agent_api.php`
+    },
+
+
     getCommentTag: {
         csdinbounddetails: `${HTTPADDR}/csdinbound/get_inbound_call_comment_api.php`,
         csdoutbounddetails: `${HTTPADDR}/csdoutbound/get_outbound_call_comment_api.php`,

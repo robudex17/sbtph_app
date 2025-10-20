@@ -12,7 +12,7 @@
         </div>
         <div v-else>
             <base-table theader="agent" tableclass='agent'>
-                <agents-data-list :tdata="allAgents" @click="deleteAgent" :agent="agent" @emittedData="updateAgent"></agents-data-list>
+                <agents-data-list :tdata="allAgents" @click="deleteAgent" :agent="agent" @emittedData="updateAgent" @resignedAgent="resignedAgent"></agents-data-list>
             </base-table>
             <management-modal-form
                 modalId="modalAgent"
@@ -24,7 +24,7 @@
             
             > </management-modal-form>
          
-            <button type="button" class="btn btn-dark" data-bs-toggle="modal" :data-bs-target="dataBsTarget" dataset-backdrop="static" dataset-keyboard="false" id="add_tag">
+        <button type="button" class="btn btn-dark" data-bs-toggle="modal" :data-bs-target="dataBsTarget" dataset-backdrop="static" dataset-keyboard="false" id="add_tag">
                 ADD AGENT
         </button>
          
@@ -97,6 +97,19 @@ export default {
              return
          }
          
+      },
+      resignedAgent(extension){
+         let confirmAnswer = confirm(`Are you sure you want to resign ${extension} Agent? Resigning Agent will automatically delete Agent Records as well`) 
+         if(confirmAnswer) {
+             try{
+             this.$store.dispatch('agentinfo/resignedAgent',{extension: extension, agent: this.agent})
+             alert('Selected  ' + this.agent.toUpperCase() + ' agent with ' +extension+ ' was successfully resigned')   
+            }catch(e){
+                this.error = e.message
+            }
+         }else{
+             return
+         }
       },
       handleError(){
           this.error = null

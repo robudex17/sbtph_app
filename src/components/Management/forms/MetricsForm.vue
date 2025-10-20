@@ -17,23 +17,50 @@
                 <div :class="inValidDateRange">
                   <p class="pError" v-if="!isValidDateRange">Start Date should not be greater the End Date</p>
                   <p class="pError" v-if="!isValidDateRange">Or Selected Date Should not be greater than the current Date</p>
-                  <div class="form-group">
-                        <label for="start_date_and_time">Start Date & Time</label>
-                          <p class="pError" v-if="!startDateTime.isValid">Empty Fields Are not Allowed</p>
+                  <!-- <div class="form-group"> -->
+                        <!-- <label for="start_date_and_time">Start Date & Time</label> -->
+                          <!-- <p class="pError" v-if="!startDateTime.isValid">Empty Fields Are not Allowed</p> -->
                         <!-- <input type="text" class="form-control" id="start_date_and_time" name="start_date_and_time" aria-describedby="start_date_and_time" placeholder="Enter Date & Time" required> -->
                         <!-- <datetime v-model="startDateTime"></datetime> -->
                         <!-- <vue-ctk-date-time-picker v-model="startDateTime"></vue-ctk-date-time-picker> -->
-                        <date-picker v-model="startDateTime.val" placeholder="Enter Date and Time ..." position="left" ref="start_date_and_time" @click="clearErrorField(startDateTime)"></date-picker>
-                  </div>
-                  <div class="form-group">
+                        <!-- <date-picker v-model="startDateTime.val" placeholder="Enter Date and Time ..." position="left" ref="start_date_and_time" @click="clearErrorField(startDateTime)"></date-picker> -->
+                  <!-- </div> -->
+                  <!-- <div class="form-group"> -->
                       
-                        <label for="end_date_and_time">End Date & Time</label>
-                        <p class="pError" v-if="!endDateTime.isValid">Empty Fields Are not Allowed</p>
+                        <!-- <label for="end_date_and_time">End Date & Time</label> -->
+                        <!-- <p class="pError" v-if="!endDateTime.isValid">Empty Fields Are not Allowed</p> -->
                         <!-- <vue-ctk-date-time-picker v-model="endDateTime"></vue-ctk-date-time-picker> -->
                         <!-- <datetime v-model="endDateTime"></datetime> -->
                         <!-- <input type="text" class="form-control" id="end_date_and_time" name="end_date_and_time" aria-describedby="end_date_and_time" placeholder="Enter Date & Time" > -->
-                          <date-picker v-model="endDateTime.val" placeholder="Enter Date and Time ..." position="left" ref="end_date_and_time"  @click="clearErrorField(endDateTime)"></date-picker>
-                  </div>
+                          <!-- <date-picker v-model="endDateTime.val" placeholder="Enter Date and Time ..." position="left" ref="end_date_and_time"  @click="clearErrorField(endDateTime)"></date-picker> -->
+                  <!-- </div> -->
+
+                <div class="form-group">
+                  <label for="start_date_and_time">Start Date & Time</label>
+                  <p class="pError" v-if="!startDateTime.isValid">Empty Fields Are not Allowed</p>
+
+                  <Datepicker
+                    v-model="startDateTime.val"
+                    :enable-time-picker="true"
+                    :auto-apply="true"
+                    placeholder="Select Start Date and Time"
+                    @open="clearErrorField(startDateTime)"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="end_date_and_time">End Date & Time</label>
+                  <p class="pError" v-if="!endDateTime.isValid">Empty Fields Are not Allowed</p>
+
+                  <Datepicker
+                    v-model="endDateTime.val"
+                    :enable-time-picker="true"
+                    :auto-apply="true"
+                    placeholder="Select End Date and Time"
+                    @open="clearErrorField(endDateTime)"
+                  />
+                </div>
+
                 </div>
                   <p class="pError" v-if="!optionMetrics.isValid">Please Select Valid Option Metrics</p>
                   <div class="input-group mb-3">
@@ -103,12 +130,15 @@
 
 <script>
 
- import DatePicker from 'vue3-date-time-picker';
+//  import DatePicker from 'vue3-date-time-picker';
+
+import Datepicker from '@vuepic/vue-datepicker'
+import '@vuepic/vue-datepicker/dist/main.css'
 
 
 export default {
     components: {
-       DatePicker
+       Datepicker
     },
     data(){
         return {
@@ -297,43 +327,49 @@ export default {
 }
 </script>
 
-<style >
-   @import '../../../../node_modules/vue3-date-time-picker/dist/main.css';
-  .invalid label {
+<style>
+
+
+.invalid label {
   color: red;
-  }
-  .form_invalid {
-    color: red;
-  }
-  .invalid input,
-  .invalid textarea {
-    border: 1px solid red;
-  }
+}
 
- .dp__input {
-   color: blue;
-   height: 40px;
-   font-size: 20px;
-   background-color: rgb(235, 227, 227);
-   padding: 5px;
-   margin:20px 0  ;
+.form_invalid {
+  color: red;
+}
 
- }
-  #tj-datetime-input{
-      color: blue;
-      background-color: rgb(238, 238, 238);
-      height: 40px;
-  }
-  .divError {
-     border: 5px solid red;
-     padding: 15px;
-  }
-  .dateRangeError {
-    border: 1px solid red;
-    padding: 5px;
-  }
-  .pError {
-    color: red;
-    font-weight: bold;
-  }
+.invalid input,
+.invalid textarea {
+  border: 1px solid red;
+}
+
+.dp__input {
+  color: blue;
+  height: 40px;
+  font-size: 20px;
+  background-color: rgb(235, 227, 227);
+  padding: 5px;
+  margin: 20px 0;
+}
+
+#tj-datetime-input {
+  color: blue;
+  background-color: rgb(238, 238, 238);
+  height: 40px;
+}
+
+.divError {
+  border: 5px solid red;
+  padding: 15px;
+}
+
+.dateRangeError {
+  border: 1px solid red;
+  padding: 5px;
+}
+
+.pError {
+  color: red;
+  font-weight: bold;
+}
 </style>

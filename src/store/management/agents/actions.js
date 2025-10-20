@@ -67,6 +67,28 @@ export default {
             context.dispatch('fetchAllAgents',payload)
         }
     },
+
+    async resignedAgent(context, payload){
+        const agent = payload.agent
+        alert(API.resignedAgent[agent])
+        
+        const response = await fetch(API.resignedAgent[agent],{
+            method: 'PUT',
+            body: JSON.stringify(payload)
+        })
+        if(!response.ok){
+            const error = new Error('Error in resigning ' +agent + 'Agent')
+            throw error
+        }else{
+            // const data = await response.json()
+            
+            // payload.extension = data[0].extension
+            // payload.method = 'delete'
+           // context.commit('mutSingleAgent',payload)
+
+            context.dispatch('fetchAllAgents',payload)
+        }
+    },    
    async fetchAgentBelongsTo(context){
        const extension = context.rootGetters.getLoggedinUserData.extension
        const response = await fetch(`${API.getAgentBelongsTo}?extension=${extension}`)
