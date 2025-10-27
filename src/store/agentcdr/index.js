@@ -23,7 +23,9 @@ const agentcdr = {
             missedCallsDetailsExport:{},
             mpvTotalCounts: [],
             tagComment :[],
-            resultSearchNUmber: []
+            resultSearchNUmber: [],
+            totalRegisteredCustomer: [],
+            resultCustomerNumber: []
         }
     },
     getters,

@@ -6,6 +6,7 @@
         <router-link class="nav-link mx-0 px-2" to="/sbtph_app/management/manage/sales">SALES AGENTS</router-link>
         <router-link class="nav-link mx-0 px-2" to="/sbtph_app/management/tags">TAGS</router-link>
         <router-link class="nav-link mx-0 px-2" to="/sbtph_app/management/metrics">METRICS</router-link>
+        <router-link class="nav-link mx-0 px-2" to="/sbtph_app/management/customerinfo">CUSTOMER INFO</router-link>
     </nav>
   </div>
 

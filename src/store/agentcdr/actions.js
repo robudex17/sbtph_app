@@ -1,3 +1,4 @@
+
 import API from '../../api.js'
 
 export default {
@@ -450,7 +451,65 @@ export default {
         console.log("New Customer Info Updated")
     }
 },
+
+ async fetchTotalRegisteredCustomer(context){
+      
+       const response = await fetch(API.getCustomerTotalRegistered)
+
+       if(!response.ok){
+         const error = new Error('Cannot Fetch')
+         throw error
+       }
+       const data = await response.json()
+       context.commit('mutTotalRegisteredCustomer', data)
+       
+
+    },
+
+    async searchCustomerNumber(context,payload){
+
+      const querystring = payload.querystring
+       
+    
+      const response = await fetch(`${API.searchCustomer}?${querystring}`)
+
+      if(!response.ok){
+        const error = new Error('No Number Found')
+        throw error
+      }
+      const data = await response.json()
+
+      if(!Array.isArray(data) || data.length == 0 || data.message ){
+         context.commit('mutCustomerNumber',[])
+      }else{
+
+         context.commit('mutCustomerNumber',data)
+      }
+    
+      
+     
+    },  
+    
+     async deleteCustomerInfo(context, payload){
+     
+      
+      const response = await fetch(API.deleteCustomer, {
+          method: 'DELETE', 
+          body: JSON.stringify(payload)
+      })
+      if(!response.ok){
+          const error = new Error('Cannot Delete Customer Info')
+          throw error
+      }else{
+          // context.dispatch('fetchtUpdatedTagComment',payload)
+          console.log("New Customer Info Deleted")
+           context.commit('mutCustomerNumber', [])
+        
+
+      }
+  },
+   
   
- 
+
       
 }

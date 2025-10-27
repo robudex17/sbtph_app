@@ -91,7 +91,11 @@ const API = {
     generateMetrics: `${HTTPADDR}/get_metrics.php`, 
 
     insertCustomerInfo: `${HTTPADDR}/insert_customer_info.php`,
-    updateCustomerInfo: `${HTTPADDR}/update_customer_info.php` 
+    updateCustomerInfo: `${HTTPADDR}/update_customer_info.php` ,
+    getCustomerTotalRegistered: `${HTTPADDR}/getcustomertotalregistered.php`,
+    deleteCustomer:  `${HTTPADDR}/delete_customer.php`,
+    searchCustomer: `${HTTPADDR}/search_customer.php`,
+   
 
 }
 export default API

@@ -29,6 +29,7 @@ const TheMetrics = () => import('./components/Management/TheMetrics.vue')
 const GeneratedMetrics = () => import('./components/Management/GeneratedMetrics.vue')
 const CallsDetails = () => import('./components/agentcdr/CallsDetails.vue')
 const MissedCallsDetails = () => import('./components/agentcdr/csd/MissedCallsDetails.vue')
+const CustomerInfo = () => import('./components/Management/CustomerInfo.vue')
 
 //const CoachDetail = () => import('./pages/coaches/CoachDetail.vue');
 
@@ -73,7 +74,8 @@ const router = createRouter({
             path: `/${appName}/management`, component: ManagementMenu , meta:{requiredAuth: true,allowedPosition:['99','10','20','22','30','40']} ,children:[
                 { path: 'manage/:agent', component: ManageAgents , props : true , meta:{requiredAuth: true,allowedPosition:['99','10','20','22','30','40']}},
                 { path: 'tags', component: ManageTags, props: true ,  meta:{requiredAuth: true, allowedPosition:['99','20','22','30','40']}},
-                { path: 'metrics', component: TheMetrics, props: true ,  meta:{requiredAuth: true,allowedPosition:['99','20','22','30','40']}}
+                { path: 'metrics', component: TheMetrics, props: true ,  meta:{requiredAuth: true,allowedPosition:['99','20','22','30','40']}},
+                { path: 'customerinfo', component: CustomerInfo, props: true ,  meta:{requiredAuth: true,allowedPosition:['99','20','22','30','40']}}
             ]
         },
         

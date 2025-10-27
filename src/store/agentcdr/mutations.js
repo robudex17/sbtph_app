@@ -82,5 +82,15 @@ export default {
     },
     mutResultSearchNumber(state, payload){
         state.resultSearchNUmber = payload
+    },
+    mutTotalRegisteredCustomer(state, payload){
+        state.totalRegisteredCustomer = payload
+    },
+    mutCustomerNumber(state, payload){
+        
+        state.resultCustomerNumber = payload
+
+       
+
     }   
 }

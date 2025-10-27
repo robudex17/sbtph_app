@@ -53,5 +53,13 @@ export default {
     },
     getResultSearchNUmber(state){
         return state.resultSearchNUmber 
-    } 
+    },
+    getTotalRegisteredCustomer(state){
+        return state.totalRegisteredCustomer
+    },
+    getResultSearchCustomerNUmber(state){
+        
+        return state.resultCustomerNumber
+    }
+
 }
