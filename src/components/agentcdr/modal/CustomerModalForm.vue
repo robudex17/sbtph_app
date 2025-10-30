@@ -16,24 +16,24 @@
                 <p v-if="customer_id != '' &&  customer_name != ''" >Updated By: <span style="font-weight: bold; color: blue;">{{updated_by}}</span></p>
                 <div class="form-group">
                   <label for="customerNumber">Customer Number:</label>
-                  <input  v-if="calltype=='csdinbounddetails'" type="text" class="form-control" id="customerNumber" placeholder="Enter Customer Number" :value="customer_number" disabled>
+                  <input  v-if="calltype=='csdinbounddetails' || calltype == 'csdoutbounddetails' || calltype == 'collectiondetails' " type="text" class="form-control" id="customerNumber" placeholder="Enter Customer Number" :value="customer_number" disabled>
                   <input  v-else type="text" class="form-control" id="customerNumber" placeholder="NOT YET REGISTER" :value="customer_number" disabled>
                 </div>
                 <div class="form-group">
                   <label for="customerID">Customer ID:</label>
                   <!-- :value="customer_id" @change="setNewCustomerId" -->
-                  <input v-if="calltype=='csdinbounddetails'" type="text" class="form-control" id="customerID" placeholder="Enter Customer ID" v-model="new_customer_id"  > 
+                  <input v-if="calltype=='csdinbounddetails' || calltype == 'csdoutbounddetails' || calltype == 'collectiondetails' " type="text" class="form-control" id="customerID" placeholder="Enter Customer ID" v-model="new_customer_id"  > 
                   <input v-else type="text" class="form-control" id="customerID" placeholder="NOT YET REGISTER" v-model="new_customer_id" disabled > 
                 </div>
                 <div class="form-group">
                   <label for="customerName">Customer Name:</label>
                   <!-- :value ="customer_name" @change="setNewCustomerName" -->
-                  <input v-if="calltype=='csdinbounddetails'"  type="text" class="form-control" id="customerName" placeholder="Enter Customer Name"  v-model="new_customer_name">
+                  <input v-if="calltype=='csdinbounddetails' || calltype == 'csdoutbounddetails' || calltype == 'collectiondetails'"  type="text" class="form-control" id="customerName" placeholder="Enter Customer Name"  v-model="new_customer_name">
                   <input v-else  type="text" class="form-control" id="customerName" placeholder="NOT YET REGISTER"  v-model="new_customer_name" disabled>
                 </div>
                 <hr>
               <div class="row justify-content-end">
-                  <div v-if="calltype=='csdinbounddetails'" class="col-5 ">
+                  <div v-if="calltype=='csdinbounddetails' || calltype == 'csdoutbounddetails' || calltype == 'collectiondetails'" class="col-5 ">
                       <button type="button " class="btn btn-primary ml-auto m-1" data-bs-dismiss="modal" id="addbtn" >Submit</button>
                     <button type="button" class="btn btn-danger ml-auto "  data-bs-dismiss="modal" >Close</button>
                   </div>
